@@ -1,0 +1,29 @@
+compiled source #
+###################
+*.com
+*.class
+*.dll
+*.o
+*.so
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+target/*
+
+# Intellij Idea generated files #
+######################
+*.idea
+*.iml
+*.xml
