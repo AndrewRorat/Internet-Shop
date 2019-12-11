@@ -1,5 +1,6 @@
 package productCreation;
 
+import productsCategory.Category;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -7,16 +8,19 @@ public class Product {
     private int id;
     private String productName;
     private LocalDate expiredDate;
+    private Category category;
     private double price;
 
-    public Product(int id, String productName, LocalDate expiredDate, double price) {
+    public Product(int id, String productName, LocalDate expiredDate, Category category, double price) {
         this.id = id;
         this.productName = productName;
         this.expiredDate = expiredDate;
+        this.category = category;
         this.price = price;
     }
 
-    public Product(){}
+    public Product() {
+    }
 
     public int getId() {
         return id;
@@ -42,6 +46,14 @@ public class Product {
         this.expiredDate = expiredDate;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public double getPrice() {
         return price;
     }
@@ -53,18 +65,19 @@ public class Product {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Product)) return false;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Product)) return false;
         Product product = (Product) o;
         return id == product.id &&
                 Double.compare(product.price, price) == 0 &&
                 Objects.equals(productName, product.productName) &&
-                Objects.equals(expiredDate, product.expiredDate);
+                Objects.equals(expiredDate, product.expiredDate) &&
+                category == product.category;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, productName, expiredDate, price);
+        return Objects.hash(id, productName, expiredDate, category, price);
     }
 
     @Override
@@ -73,6 +86,7 @@ public class Product {
                 "id=" + id +
                 ", productName='" + productName + '\'' +
                 ", expiredDate=" + expiredDate +
+                ", category=" + category +
                 ", price=" + price +
                 '}';
     }
