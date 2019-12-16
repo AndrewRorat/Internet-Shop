@@ -2,10 +2,10 @@ package productsCategory;
 
 public enum Category {
 
-    vegetablesAndFruits("Vegetables And fruits"),
-    oils("Oils"),
-    sweets("Sweets"),
-    water("Water");
+    VEGETABLESANDFRUITS("Vegetables And fruits"),
+    OILS("Oils"),
+    SWEETS("Sweets"),
+    WATER("Water");
 
     String category;
 

@@ -5,42 +5,42 @@ import exceptions.WrongProductInputException;
 import productsCategory.Category;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Products {
 
-    public Products() {
+    public static final Product GOOD_OIL = new Product(2, "Good oil", LocalDate.of(2019, 12, 30), Category.OILS, 2.99);
+    public static final Product CRACKER = new Product(31, "Сracker", LocalDate.of(2019, 12, 25), Category.SWEETS, 0.99);
+    public static final Product POMEGRANATE = new Product(11, "Pomegranate", LocalDate.of(2019, 12, 21), Category.VEGETABLESANDFRUITS, 1.49);
+    public static final Product COCACOLA = new Product(54, "CocaCola", LocalDate.of(2020, 11, 12), Category.WATER, 0.49);
+
+    public static HashMap<Integer, Product> items = new HashMap<>();
+
+    static {
+        items.put(GOOD_OIL.getId(), GOOD_OIL);
+        items.put(CRACKER.getId(), CRACKER);
+        items.put(POMEGRANATE.getId(), CRACKER);
+        items.put(COCACOLA.getId(), COCACOLA);
     }
 
-    public ArrayList<Product> productList() {
-        var item = new ArrayList<Product>();
-        item.add(new Product(2, "Good oil", LocalDate.of(2019, 12, 30), Category.oils, 2.99));
-        item.add(new Product(31, "Сracker", LocalDate.of(2019, 12, 25), Category.sweets, 0.99));
-        item.add(new Product(11, "Pomegranate", LocalDate.of(2019, 12, 21), Category.vegetablesAndFruits, 1.49));
-        item.add(new Product(54, "CocaCola", LocalDate.of(2020, 11, 12), Category.water, 0.49));
-        return item;
+    public static void showProducts() {
+        items.values().forEach(System.out::println);
     }
 
-    public static void showProducts(ArrayList<Product> productList) {
-        productList.forEach(System.out::println);
-    }
-
-    public ArrayList<Product> addProduct(int id, String productName, int year, int month, int day, Category category, double price)
-            throws WrongProductInputException {
-        var item = new ArrayList<Product>();
-        if (item.add(new Product(id, productName, LocalDate.of(year, month, day), category, price))) {
+    public static void addProduct(Product product) throws WrongProductInputException{
+        if(!items.keySet().contains(product.getId())) {
+            items.put(product.getId(), product);
             System.out.println("Product has added");
         } else {
-            throw new WrongProductInputException("Wrong input to add product you want");
+            throw new WrongProductInputException("Product is already at storage");
         }
-        return item;
     }
 
-    public void removeProduct(Product id) throws ProductNotFoundException {
-        if (productList().contains(id)) {
-            productList().remove(id);
+    public static void removeProduct(Product product) throws ProductNotFoundException {
+        if (items.keySet().contains(product.getId())) {
+            items.remove(product.getId());
         } else {
-            throw new ProductNotFoundException("Wrong product id : " + id);
+            throw new ProductNotFoundException("Wrong product id : " + product.getId());
         }
     }
 }
