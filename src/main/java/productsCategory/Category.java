@@ -2,7 +2,7 @@ package productsCategory;
 
 public enum Category {
 
-    VEGETABLESANDFRUITS("Vegetables And fruits"),
+    VEGETABLESANDFRUITS("Vegetables and fruits"),
     OILS("Oils"),
     SWEETS("Sweets"),
     WATER("Water");
@@ -17,8 +17,11 @@ public enum Category {
         return category;
     }
 
-    public void ShowCategory() {
-        System.out.println(getCategory());
+    public static void showCategories() {
+        System.out.println("Vegetables and fruits;\n" +
+                "Oils;\n" +
+                "Sweets;\n" +
+                "Water;");
     }
 
     @Override

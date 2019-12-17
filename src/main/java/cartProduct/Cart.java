@@ -26,7 +26,7 @@ public class Cart {
         cart.values().forEach(System.out::println);
     }
 
-    public static void removeFromCart(int id) throws ProductNotFoundException {
+    public static void removeFromCart(Integer id) throws ProductNotFoundException {
         if (cart.keySet().contains(id)) {
             cart.remove(id);
         } else {
